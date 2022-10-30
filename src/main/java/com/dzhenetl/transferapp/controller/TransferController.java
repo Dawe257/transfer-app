@@ -1,5 +1,6 @@
 package com.dzhenetl.transferapp.controller;
 
+import com.dzhenetl.transferapp.model.Card;
 import com.dzhenetl.transferapp.model.Transaction;
 import com.dzhenetl.transferapp.repository.TransferRepository;
 import com.dzhenetl.transferapp.service.TransferService;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class TransferController {
 
-    private TransferService service;
+    private final TransferService service;
 
     public TransferController(TransferRepository repository) {
         this.service = new TransferService(repository);
@@ -19,6 +20,12 @@ public class TransferController {
     @PostMapping("/transfer")
     public ResponseEntity<String> transfer(@RequestBody Transaction transaction) {
         return new ResponseEntity<>("\"operationId\": \"string\"", HttpStatus.OK);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<String> transfer(@RequestBody Card card) {
+        service.saveCard(card);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/confirmOperation")
