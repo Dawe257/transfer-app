@@ -7,11 +7,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Transaction {
+public class Card {
 
-    private String cardFromNumber;
-    private String cardToNumber;
-    private String cardFromCVV;
-    private String cardFromValidTill;
+    private String cardNumber;
+    private String cardCVV;
+    private String cardValidTill;
     private Amount amount;
 }
