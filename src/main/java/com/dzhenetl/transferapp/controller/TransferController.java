@@ -1,11 +1,10 @@
 package com.dzhenetl.transferapp.controller;
 
-import com.dzhenetl.transferapp.model.Card;
-import com.dzhenetl.transferapp.model.Transaction;
-import com.dzhenetl.transferapp.repository.TransferRepository;
+import com.dzhenetl.transferapp.model.ConfirmRequest;
+import com.dzhenetl.transferapp.model.TransactionRequest;
+import com.dzhenetl.transferapp.model.TransferResponse;
+import com.dzhenetl.transferapp.repository.TransactionRepository;
 import com.dzhenetl.transferapp.service.TransferService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,23 +12,17 @@ public class TransferController {
 
     private final TransferService service;
 
-    public TransferController(TransferRepository repository) {
+    public TransferController(TransactionRepository repository) {
         this.service = new TransferService(repository);
     }
 
     @PostMapping("/transfer")
-    public ResponseEntity<String> transfer(@RequestBody Transaction transaction) {
-        return new ResponseEntity<>("\"operationId\": \"string\"", HttpStatus.OK);
-    }
-
-    @PostMapping("/save")
-    public ResponseEntity<String> transfer(@RequestBody Card card) {
-        service.saveCard(card);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public TransferResponse transfer(@RequestBody TransactionRequest request) {
+        return new TransferResponse(service.transfer(request));
     }
 
     @PostMapping("/confirmOperation")
-    public ResponseEntity<String> confirm(@RequestBody Transaction transaction) {
-        return new ResponseEntity<>("\"operationId\": \"string\"", HttpStatus.OK);
+    public TransferResponse confirm(@RequestBody ConfirmRequest request) {
+        return new TransferResponse(service.confirm(request));
     }
 }

@@ -1,32 +1,31 @@
 package com.dzhenetl.transferapp.service;
 
-import com.dzhenetl.transferapp.model.Amount;
-import com.dzhenetl.transferapp.model.Card;
-import com.dzhenetl.transferapp.repository.TransferRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.dzhenetl.transferapp.exception.TransactionNotFoundException;
+import com.dzhenetl.transferapp.model.ConfirmRequest;
+import com.dzhenetl.transferapp.model.TransactionRequest;
+import com.dzhenetl.transferapp.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TransferService {
 
-    Logger logger = LoggerFactory.getLogger(TransferService.class);
+    private final TransactionRepository repository;
 
-    private final TransferRepository repository;
-
-    public TransferService(TransferRepository repository) {
+    public TransferService(TransactionRepository repository) {
         this.repository = repository;
     }
 
-    public void transfer(Card cardFrom, Card cardTo, Amount amount) {
-        repository.transfer(cardFrom, cardTo, amount);
+    public Long transfer(TransactionRequest request) {
+        return repository.save(request).getId();
     }
 
-    public void confirm() {
-        repository.confirm();
-    }
-
-    public void saveCard(Card card) {
-        repository.saveCard(card);
+    public Long confirm(ConfirmRequest request) {
+        Long id = request.getOperationId();
+        TransactionRequest transactionRequest = repository.findById(id).orElseThrow(
+                () -> new TransactionNotFoundException("Not found transaction with id " + id, id)
+        );
+        transactionRequest.setConfirmed(true);
+        repository.save(transactionRequest);
+        return transactionRequest.getId();
     }
 }

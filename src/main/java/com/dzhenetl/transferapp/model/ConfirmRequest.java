@@ -7,10 +7,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Card {
+public class ConfirmRequest {
 
-    private String cardNumber;
-    private String cardCVV;
-    private String cardValidTill;
-    private Amount amount;
+    private Long operationId;
+    private String code;
 }

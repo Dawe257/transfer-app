@@ -9,5 +9,4 @@ public class TransferAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(TransferAppApplication.class, args);
     }
-
 }
