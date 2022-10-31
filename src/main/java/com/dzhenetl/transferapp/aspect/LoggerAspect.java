@@ -1,5 +1,6 @@
 package com.dzhenetl.transferapp.aspect;
 
+import com.dzhenetl.transferapp.model.TransactionRequest;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

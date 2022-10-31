@@ -19,5 +19,6 @@ public class Amount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer value;
+    @Enumerated(EnumType.STRING)
     private Currency currency;
 }
