@@ -16,8 +16,8 @@ services:
   transfer_app:
     build: ./
     ports:
-      - "5500:5500"
+      - '5500:5500'
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/transfer?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/transfer
     depends_on:
       - db

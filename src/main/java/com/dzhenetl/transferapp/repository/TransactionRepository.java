@@ -1,7 +1,7 @@
 package com.dzhenetl.transferapp.repository;
 
-import com.dzhenetl.transferapp.model.TransactionRequest;
+import com.dzhenetl.transferapp.model.Transaction;
 import org.springframework.data.repository.CrudRepository;
 
-public interface TransactionRepository extends CrudRepository<TransactionRequest, Long> {
+public interface TransactionRepository extends CrudRepository<Transaction, Long> {
 }

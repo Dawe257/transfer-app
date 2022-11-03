@@ -4,14 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @Entity
-@EqualsAndHashCode
-@Table(name = "transaction")
-public class TransactionRequest {
+public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

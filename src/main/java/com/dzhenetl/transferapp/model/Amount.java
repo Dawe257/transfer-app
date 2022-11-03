@@ -4,13 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @Entity
-@EqualsAndHashCode
-@Table(name = "amount")
 public class Amount {
 
     @Id

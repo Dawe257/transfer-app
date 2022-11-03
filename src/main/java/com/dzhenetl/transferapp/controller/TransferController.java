@@ -1,7 +1,7 @@
 package com.dzhenetl.transferapp.controller;
 
 import com.dzhenetl.transferapp.model.ConfirmRequest;
-import com.dzhenetl.transferapp.model.TransactionRequest;
+import com.dzhenetl.transferapp.model.Transaction;
 import com.dzhenetl.transferapp.model.TransferResponse;
 import com.dzhenetl.transferapp.repository.TransactionRepository;
 import com.dzhenetl.transferapp.service.TransactionService;
@@ -21,7 +21,7 @@ public class TransferController {
     }
 
     @PostMapping("/transfer")
-    public TransferResponse transfer(@RequestBody TransactionRequest request) {
+    public TransferResponse transfer(@RequestBody Transaction request) {
         return new TransferResponse(service.transfer(request));
     }
 
