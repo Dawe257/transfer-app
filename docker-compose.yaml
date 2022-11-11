@@ -14,10 +14,13 @@ services:
     expose:
       - '3306'
   transfer_app:
-    build: ./
+    image: transfer-app:1.0
     ports:
       - '5500:5500'
+    expose:
+      - '5500'
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/transfer
+      SPRING_DATASOURCE_URL: 'jdbc:mysql://db:3306/transfer?createDatabaseIfNotExist=true'
+      SPRING_JPA_HIBERNATE_DDL_AUTO: 'update'
     depends_on:
       - db
